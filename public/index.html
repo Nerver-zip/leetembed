@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetEmbed - LeetCode Question Preview</title>
+    <meta name="description" content="LeetEmbed: Easily generate Discord previews for LeetCode questions.">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        main {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            margin-top: 0;
+        }
+        code {
+            background: #eee;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        a {
+            color: #4CAF50;
+        }
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>LeetEmbed</h1>
+    </header>
+    <main>
+        <h2>How to Use</h2>
+        <p>To generate a Discord preview for a LeetCode question, append the question slug to the URL:</p>
+        <pre>https://leetembed.vercel.app/api/problems/<code>two-sum</code></pre>
+        <p>Example:</p>
+        <pre>https://leetembed.vercel.app/api/problems/two-sum</pre>
+
+        <h3>Details</h3>
+        <ul>
+            <li>Discord will automatically generate a preview using the OG meta tags.</li>
+            <li>The description is cleaned to show only the problem statement without examples.</li>
+            <li>You can copy any LeetCode question slug and paste it in the URL.</li>
+        </ul>
+
+        <h3>Default Image</h3>
+        <p>The preview image will always use the LeetCode logo unless the OG image is changed.</p>
+        <img src="/assets/leetcode.png" alt="LeetCode Logo" width="150">
+    </main>
+    <footer>
+        &copy; 2025 LeetEmbed. Created by you.
+    </footer>
+</body>
+</html>
