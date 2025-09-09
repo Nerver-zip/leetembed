@@ -29,7 +29,7 @@ function renderEmbedHTML(data) {
     <meta property="og:title" content="${titleWithNumber}" />
     <meta property="og:description" content="${metaDesc}" />
     <meta property="og:url" content="${data.url}" />
-    <meta property="og:image" content="https://leetembed.vercel.app/assets/leetcode.png" />
+    <meta property="og:image" content="https://leetembed.vercel.app/assets/leetcode-small.png" />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="description" content="${metaDesc}" />
