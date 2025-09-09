@@ -21,8 +21,8 @@ function renderEmbedHTML(data) {
     // Build preview text (meta only)
     const metaDesc = 
       `${diffEmoji} ${data.difficulty}\n` +
-      `Tags: ${data.tags}\n` +
-      `👍 ${data.likes} | 👎 ${data.dislikes} | 📊 Acceptance: ${data.acceptance}\n` +
+      `Tags: ${data.tags}\n\n` +
+      `👍 ${data.likes} | 👎 ${data.dislikes} | 📊 Acceptance: ${data.acceptance}\n\n` +
       `${safeDesc}`;
     
     return `
