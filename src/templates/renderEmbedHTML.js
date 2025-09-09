@@ -18,8 +18,8 @@ function renderEmbedHTML(data) {
     // Title with number
     const titleWithNumber = data.number ? `${data.number}. ${data.title}` : data.title;
 
-    // Build preview text (meta)
-    const metaDesc = `${diffEmoji} ${data.difficulty}\nTags: ${data.tags}\n\n${safeDesc}`;
+    // Build preview text (meta only)
+    const metaDesc = `${diffEmoji} ${data.difficulty}\nTags: ${data.tags}\n\n${safeDesc}\n\n👍 ${data.likes} | 👎 ${data.dislikes} | 📊 Acceptance: ${data.acceptance}`;
 
     return `
 <!DOCTYPE html>
@@ -40,10 +40,19 @@ function renderEmbedHTML(data) {
     <p><strong>Difficulty:</strong> ${diffEmoji} ${data.difficulty}</p>
     <p><strong>Tags:</strong> ${data.tags}</p>
     <p>${safeDesc}</p>
+
+    <hr />
+    <footer>
+      👍 ${data.likes} &nbsp; | &nbsp; 👎 ${data.dislikes} &nbsp; | &nbsp; 📊 Acceptance: ${data.acceptance}
+    </footer>
+
+    <br/>
+    <img src="https://leetembed.vercel.app/assets/leetcode-small.png" alt="LeetCode Logo" width="50" height="50" />
+    <br/>
     <a href="${data.url}">Open on LeetCode</a>
 </body>
 </html>
 `;
 }
 
-module.exports = {renderEmbedHTML};
+module.exports = { renderEmbedHTML };

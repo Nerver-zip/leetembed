@@ -16,11 +16,14 @@ async function fetchLeetCodeData(slug) {
     }
 
     return {
-        number: question.questionFrontendId, 
+        number: question.questionFrontendId,
         title: question.title,
         difficulty: question.difficulty,
         tags: question.topicTags.map(tag => tag.name).join(', '),
-        description: cleanDescription(question.content) || "Description not available.",
+        description: cleanDescription(question.content) || "Description unavailable.",
+        likes: question.likes,
+        dislikes: question.dislikes,
+        acceptance: JSON.parse(question.stats).acRate, 
         url: `https://leetcode.com/problems/${slug}/`,
     };
 }

@@ -1,10 +1,14 @@
+
 async function fetchGraphQL(slug) {
     const query = `
         query getQuestionDetail($titleSlug: String!) {
             question(titleSlug: $titleSlug) {
-                questionFrontendId  # número da questão
+                questionFrontendId
                 title
                 difficulty
+                likes
+                dislikes
+                stats
                 topicTags {
                     name
                 }
@@ -27,5 +31,6 @@ async function fetchGraphQL(slug) {
     const json = await response.json();
     return json.data.question;
 }
+
 
 module.exports = { fetchGraphQL };
