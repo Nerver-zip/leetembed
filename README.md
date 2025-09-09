@@ -15,13 +15,11 @@ Just paste a LeetCode problem link with the `leetembed.vercel.app` domain and it
 
 Paste this in Discord:
 
-https://leetembed.vercel.app/two-sum
+https://leetembed.vercel.app/api/problems/stone-game-iv
 
 And you’ll get a preview like:
 
-
+<img src="public/assets/screenshot.png" alt="Screenshot" width="600" />
 
 ## 🛠️ Notes
-
-- If you open only the root (https://leetembed.vercel.app/), a **fallback page** will explain how to use the service.  
-- Description is truncated at **400 characters**.  
+- Description is truncated automatically by Discord.  
