@@ -45,3 +45,5 @@ function renderEmbedHTML(data) {
 </html>
 `;
 }
+
+module.exports = {renderEmbedHTML};

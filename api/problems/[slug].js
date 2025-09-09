@@ -12,6 +12,6 @@ export default async function handler(req, res) {
     res.setHeader('Content-Type', 'text/html');
     res.status(200).send(html);
   } catch (err) {
-    res.status(404).send('<h1>Questão não encontrada</h1>');
+    res.status(404).send('<h1>Question not found</h1>');
   }
 }
