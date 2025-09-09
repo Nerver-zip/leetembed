@@ -19,8 +19,12 @@ function renderEmbedHTML(data) {
     const titleWithNumber = data.number ? `${data.number}. ${data.title}` : data.title;
 
     // Build preview text (meta only)
-    const metaDesc = `${diffEmoji} ${data.difficulty}\nTags: ${data.tags}\n\n${safeDesc}\n\n👍 ${data.likes} | 👎 ${data.dislikes} | 📊 Acceptance: ${data.acceptance}`;
-
+    const metaDesc = 
+      `${diffEmoji} ${data.difficulty}\n` +
+      `Tags: ${data.tags}\n` +
+      `👍 ${data.likes} | 👎 ${data.dislikes} | 📊 Acceptance: ${data.acceptance}\n` +
+      `${safeDesc}`;
+    
     return `
 <!DOCTYPE html>
 <html lang="en">
