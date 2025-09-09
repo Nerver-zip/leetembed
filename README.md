@@ -1,6 +1,6 @@
 # 🔗 LeetEmbed
 
-LeetEmbed is a simple service that generates **Discord / Twitter rich previews** for [LeetCode](https://leetcode.com) problems.  
+LeetEmbed is a simple service that generates **Discord previews** for [LeetCode](https://leetcode.com) problems.  
 Just paste a LeetCode problem link with the `leetembed.vercel.app` domain and it will automatically show a nice Open Graph preview with:
 
 - ✅ Problem number and title  
