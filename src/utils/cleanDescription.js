@@ -1,42 +1,27 @@
-
 function cleanDescription(html) {
     let text = html;
 
-    // 1️⃣ Decode HTML
+    // Decode basic HTML entities
     text = text.replace(/&nbsp;/g, ' ')
                .replace(/&lt;/g, '<')
                .replace(/&gt;/g, '>')
                .replace(/&amp;/g, '&');
 
-    // 2️⃣ Cuts descripion starting from "Example 1:"
+    //Cut description starting from "Example 1:"
     const exampleIdx = text.indexOf('Example 1:');
     if (exampleIdx !== -1) {
         text = text.slice(0, exampleIdx).trim();
     }
 
-    // 3️⃣ Remove HTML tags
-    text = text.replace(/<p>/g, '')
-               .replace(/<\/p>/g, '\n')
-               .replace(/<ul>/g, '')
-               .replace(/<\/ul>/g, '')
-               .replace(/<li>/g, '- ')
-               .replace(/<\/li>/g, '\n')
-               .replace(/<pre>/g, '')
-               .replace(/<\/pre>/g, '\n')
-               .replace(/<strong>Follow-up:&nbsp;<\/strong>.*/g, ''); // remove Follow-up
-
-    // 4️⃣ Convert tags into Markdown
-    text = text.replace(/<code>(.*?)<\/code>/g, '`$1`')
-               .replace(/<strong>(.*?)<\/strong>/g, '**$1**')
-               .replace(/<em>(.*?)<\/em>/g, '*$1*');
-
-    // 5️⃣ Remove any additional tags
+    //Strip all HTML tags (no formatting in Discord preview)
     text = text.replace(/<[^>]+>/g, '');
 
-    // 6️⃣ Remove múltiplos spaces and line breaks
-    text = text.replace(/\n\s*\n/g, '\n\n').trim();
+    //Normalize whitespace and line breaks
+    text = text.replace(/\r?\n|\r/g, ' ') // replace all newlines with space
+               .replace(/\s+/g, ' ')      // collapse multiple spaces
+               .trim();
 
-    // 7️⃣ 400 char limit
+    //400 char limit
     if (text.length > 400) {
         text = text.slice(0, 400) + "...";
     }
@@ -45,4 +30,5 @@ function cleanDescription(html) {
 }
 
 module.exports = { cleanDescription };
+
 
