@@ -1,5 +1,4 @@
 function renderEmbedHTML(data) {
-    // Escapa e formata a descrição para meta tags
     const rawDesc = data.description || '';
     const safeDesc = rawDesc
         .replace(/<[^>]*>?/gm, '')  // Remove tags HTML
@@ -10,7 +9,6 @@ function renderEmbedHTML(data) {
         .replace(/"/g, '&quot;')  // Escapa "
         .trim();
 
-    // Dificuldade emoji
     let diffEmoji = '';
     switch (data.difficulty.toLowerCase()) {
         case 'easy': diffEmoji = '🟢'; break;
@@ -18,14 +16,13 @@ function renderEmbedHTML(data) {
         case 'hard': diffEmoji = '🔴'; break;
     }
 
-    // Título do problema
     const titleWithNumber = data.number ? `${data.number}. ${data.title}` : data.title;
 
-    // A meta descrição principal para o Discord
-    // Coloque todo o conteúdo aqui, o Discord fará o corte.
-    const metaDesc = `**${diffEmoji} ${data.difficulty}**\n**Tags:** ${data.tags}\n\n${safeDesc}\n\n👍 ${data.likes} | 👎 ${data.dislikes} | 📊 ${data.acceptance}`;
+    const metaHeader = `${diffEmoji} ${data.difficulty} | Tags: ${data.tags}`;
+    const fullMetaDesc = `${metaHeader}\n\n${safeDesc}`;
 
-    // URL da logo do LeetCode para ser a PFP
+    const statsFooter = `👍 ${data.likes} | 👎 ${data.dislikes} | 📊 ${data.acceptance}`;
+
     const leetCodeLogoUrl = "https://leetembed.vercel.app/assets/leetcode-small.png";
 
     return `
@@ -37,17 +34,17 @@ function renderEmbedHTML(data) {
     <link rel="icon" href="${leetCodeLogoUrl}">
     
     <meta property="og:title" content="${titleWithNumber}" />
-    <meta property="og:description" content="${metaDesc}" />
+    <meta property="og:description" content="${fullMetaDesc}" />
     <meta property="og:url" content="${data.url}" />
     
     <meta property="og:image" content="${leetCodeLogoUrl}" />
     
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="LeetEmbed" />
+    <meta property="og:site_name" content="${statsFooter}" />
     
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="${titleWithNumber}" />
-    <meta name="twitter:description" content="${metaDesc}" />
+    <meta name="twitter:description" content="${fullMetaDesc}" />
     <meta name="twitter:image" content="${leetCodeLogoUrl}" />
 
     <meta http-equiv="refresh" content="0; url = ${data.url}" />
