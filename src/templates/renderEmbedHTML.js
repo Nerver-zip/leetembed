@@ -1,14 +1,15 @@
 function renderEmbedHTML(data) {
     const rawDesc = data.description || '';
     const safeDesc = rawDesc
-        .replace(/<[^>]*>?/gm, '')  // Remove tags HTML
-        .replace(/\n/g, ' ')      // Substitui novas linhas por espaços
-        .replace(/&/g, '&amp;')   // Escapa &
-        .replace(/</g, '&lt;')    // Escapa <
-        .replace(/>/g, '&gt;')    // Escapa >
-        .replace(/"/g, '&quot;')  // Escapa "
+        .replace(/<[^>]*>?/gm, '') 
+        .replace(/\n/g, ' ')      
+        .replace(/&/g, '&amp;')   
+        .replace(/</g, '&lt;')    
+        .replace(/>/g, '&gt;')    
+        .replace(/"/g, '&quot;')  
         .trim();
 
+    // Dificuldade emoji
     let diffEmoji = '';
     switch (data.difficulty.toLowerCase()) {
         case 'easy': diffEmoji = '🟢'; break;
@@ -18,8 +19,7 @@ function renderEmbedHTML(data) {
 
     const titleWithNumber = data.number ? `${data.number}. ${data.title}` : data.title;
 
-    const metaHeader = `${diffEmoji} ${data.difficulty} | Tags: ${data.tags}`;
-    const fullMetaDesc = `${metaHeader}\n\n${safeDesc}`;
+    const metaDescriptionContent = `${diffEmoji} ${data.difficulty} | Tags: ${data.tags} \n\n${safeDesc}`;
 
     const statsFooter = `👍 ${data.likes} | 👎 ${data.dislikes} | 📊 ${data.acceptance}`;
 
@@ -34,7 +34,7 @@ function renderEmbedHTML(data) {
     <link rel="icon" href="${leetCodeLogoUrl}">
     
     <meta property="og:title" content="${titleWithNumber}" />
-    <meta property="og:description" content="${fullMetaDesc}" />
+    <meta property="og:description" content="${metaDescriptionContent}" />
     <meta property="og:url" content="${data.url}" />
     
     <meta property="og:image" content="${leetCodeLogoUrl}" />
@@ -44,7 +44,7 @@ function renderEmbedHTML(data) {
     
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="${titleWithNumber}" />
-    <meta name="twitter:description" content="${fullMetaDesc}" />
+    <meta name="twitter:description" content="${metaDescriptionContent}" />
     <meta name="twitter:image" content="${leetCodeLogoUrl}" />
 
     <meta http-equiv="refresh" content="0; url = ${data.url}" />
