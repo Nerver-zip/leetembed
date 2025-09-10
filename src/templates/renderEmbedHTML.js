@@ -9,7 +9,6 @@ function renderEmbedHTML(data) {
         .replace(/"/g, '&quot;')  
         .trim();
 
-    // Dificuldade emoji
     let diffEmoji = '';
     switch (data.difficulty.toLowerCase()) {
         case 'easy': diffEmoji = '🟢'; break;
