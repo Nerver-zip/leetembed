@@ -1,5 +1,5 @@
 function renderEmbedHTML(data) {
-    // Escape for meta tags
+    // Escape characters for meta tags
     const safeDesc = data.description
         .replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
@@ -18,29 +18,36 @@ function renderEmbedHTML(data) {
     // Title with number
     const titleWithNumber = data.number ? `${data.number}. ${data.title}` : data.title;
 
-    // Build preview text (meta only)
+    // Build meta description (maximizing preview)
     const metaDesc = 
-      `${diffEmoji} ${data.difficulty}\n` +
-      `Tags: ${data.tags}\n\n` +
-      `👍 ${data.likes} | 👎 ${data.dislikes} | 📊 Acceptance: ${data.acceptance}\n\n` +
-      `${safeDesc}`;
-    
+        `${diffEmoji} ${data.difficulty} | Tags: ${data.tags} | 👍 ${data.likes} | 👎 ${data.dislikes} | 📊 Acceptance: ${data.acceptance}\n\n${safeDesc}`;
+
     return `
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
+
+    <!-- Open Graph / Discord / LinkedIn -->
     <meta property="og:title" content="${titleWithNumber}" />
     <meta property="og:description" content="${metaDesc}" />
     <meta property="og:url" content="${data.url}" />
     <meta property="og:image" content="https://leetembed.vercel.app/assets/leetcode-small.png" />
     <meta property="og:type" content="website" />
+
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="${titleWithNumber}" />
+    <meta name="twitter:description" content="${metaDesc}" />
+    <meta name="twitter:image" content="https://leetembed.vercel.app/assets/leetcode-small.png" />
+
+    <!-- Fallback description -->
     <meta name="description" content="${metaDesc}" />
+
     <title>${titleWithNumber}</title>
 </head>
 <body>
-    <h1>${titleWithNumber}</h1>
+    <h1><a href="${data.url}">${titleWithNumber}</a></h1>
     <p><strong>Difficulty:</strong> ${diffEmoji} ${data.difficulty}</p>
     <p><strong>Tags:</strong> ${data.tags}</p>
     <p>${safeDesc}</p>
