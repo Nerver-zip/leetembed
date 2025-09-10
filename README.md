@@ -15,7 +15,7 @@ Just paste a LeetCode problem link with the `leetembed.vercel.app` domain and it
 
 Paste this in Discord:
 
-https://leetembed.vercel.app/api/problems/stone-game-iv
+https://leetembed.vercel.app/api/problems/two-sum
 
 And you’ll get a preview like:
 
