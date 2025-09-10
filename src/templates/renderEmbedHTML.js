@@ -51,8 +51,8 @@ function renderEmbedHTML(data) {
     <title>${titleWithNumber}</title>
 </head>
 <body>
-    <h1>Redirecionando para o problema do LeetCode...</h1>
-    <a href="${data.url}">Clique aqui se o redirecionamento não funcionar.</a>
+    <h1>Redirectiong to LeetCode problem...</h1>
+    <a href="${data.url}">Click here if it did not work.</a>
 </body>
 </html>
 `;
