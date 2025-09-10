@@ -1,5 +1,5 @@
 function renderEmbedHTML(data) {
-    // Escape for meta tags (OG + Twitter)
+    // Escape characters for meta tags
     const safeDesc = data.description
         .replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
@@ -18,51 +18,40 @@ function renderEmbedHTML(data) {
     // Title with number
     const titleWithNumber = data.number ? `${data.number}. ${data.title}` : data.title;
 
-    // Header simulado (nome + username)
-    const header = `LeetCode / Problem`;
+    // Footer stats (embedded in description for Discord)
+    const statsLine = `👍 ${data.likes} | 👎 ${data.dislikes} | 📊 Acceptance: ${data.acceptance}`;
 
-    // Footer simulado
-    const footer = `LeetCode • ${new Date().toLocaleDateString('en-US')}`;
-
-    // Build meta description for OG / Twitter (body + footer)
-    const metaDesc = 
-      `${diffEmoji} ${data.difficulty}\n` +
-      `Tags: ${data.tags}\n` +
-      `👍 ${data.likes} | 👎 ${data.dislikes} | 📊 Acceptance: ${data.acceptance}\n\n` +
-      `${safeDesc}\n\n${footer}`;
+    // Full meta description
+    const metaDesc = `${diffEmoji} ${data.difficulty}\nTags: ${data.tags}\n${statsLine}\n\n${safeDesc}`;
 
     return `
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <!-- Header + body -->
+    
+    <!-- Twitter/Discord preview meta -->
     <meta property="og:title" content="${titleWithNumber}" />
     <meta property="og:description" content="${metaDesc}" />
     <meta property="og:url" content="${data.url}" />
     <meta property="og:image" content="https://leetembed.vercel.app/assets/leetcode-small.png" />
     <meta property="og:type" content="website" />
-
-    <!-- Twitter Card tags -->
+    <meta property="og:site_name" content="LeetEmbed" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${titleWithNumber}" />
     <meta name="twitter:description" content="${metaDesc}" />
-    <meta name="twitter:image" content="https://leetembed.vercel.app/assets/leetcode-small.png" />
-
     <meta name="description" content="${metaDesc}" />
+
     <title>${titleWithNumber}</title>
 </head>
 <body>
-    <!-- Visualização básica no navegador -->
-    <h1>${titleWithNumber}</h1>
+    <h1><a href="${data.url}">${titleWithNumber}</a></h1>
     <p><strong>Difficulty:</strong> ${diffEmoji} ${data.difficulty}</p>
     <p><strong>Tags:</strong> ${data.tags}</p>
     <p>${safeDesc}</p>
 
     <hr />
-    <footer>
-      👍 ${data.likes} &nbsp; | &nbsp; 👎 ${data.dislikes} &nbsp; | &nbsp; 📊 Acceptance: ${data.acceptance}
-    </footer>
+    <p>${statsLine}</p>
 
     <br/>
     <img src="https://leetembed.vercel.app/assets/leetcode-small.png" alt="LeetCode Logo" width="50" height="50" />
